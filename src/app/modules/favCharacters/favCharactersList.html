@@ -1,0 +1,37 @@
+<ng-container *ngIf="favCharacters$ | async as characters">
+  <div class="card-container">
+    <mat-card class="card character-card" *ngFor="let character of characters">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{ character.name }}</mat-card-title>
+          <mat-card-subtitle
+            >{{ character.species }} | {{ character.gender }}
+            <p class="character-status" [characterStatus]="character.status">
+              {{ character.status }}
+            </p>
+          </mat-card-subtitle>
+
+          <img
+            mat-card-lg-image
+            *ngIf="character.image"
+            [src]="character.image"
+            alt="{{ character.name }}"
+            class="character-card__img"
+          />
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="example-button-container">
+          <button
+            mat-icon-button
+            color="warn"
+            aria-label="button with heart icon to remove character from favorite"
+            (click)="removeCharacterFromFav(character)"
+          >
+            <mat-icon>favorite</mat-icon>
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-container>

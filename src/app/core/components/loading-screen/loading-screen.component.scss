@@ -1,0 +1,29 @@
+@use "../../../../styles/variables" as *;
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+
+  h1 {
+    font-size: 2em;
+    font-weight: 800;
+  }
+
+  img {
+    height: auto;
+    filter: drop-shadow(15px 15px 15px $color-secondary);
+    animation: moveUpDown 1s infinite alternate ease-in-out;
+  }
+
+  @keyframes moveUpDown {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(20px);
+    }
+  }
+}

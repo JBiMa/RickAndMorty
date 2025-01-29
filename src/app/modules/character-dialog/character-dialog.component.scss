@@ -1,0 +1,59 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as mixin;
+
+.dialog-popup {
+  background-color: $color-black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include mixin.respond(phone) {
+    flex-direction: column;
+  }
+
+  .character-card__img {
+    border-radius: 3rem;
+    padding: 2rem;
+    width: 40vw;
+    height: auto;
+
+    @include mixin.respond(phone) {
+      width: 80vw;
+    }
+  }
+
+  .character-info {
+    color: $color-black;
+    background-color: $color-primary;
+    margin: 2rem;
+    border: 0.3rem solid $color-secondary;
+    border-radius: 3rem;
+    padding: 1rem;
+
+    &__title {
+      color: $color-grey-6;
+      font-size: 2em;
+    }
+    &__label {
+      color: $color-grey-6;
+      font-weight: 800;
+      font-size: 1.2em;
+    }
+    p {
+      color: $color-grey-5;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($color-black, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: -1;
+    cursor: pointer;
+  }
+}

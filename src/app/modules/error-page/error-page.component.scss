@@ -1,0 +1,25 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as mixin;
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+
+  &__image {
+    height: auto;
+    filter: drop-shadow(15px 15px 15px $color-secondary);
+    animation: moveUpDown 2s infinite alternate ease-in-out;
+  }
+
+  @keyframes moveUpDown {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(20px);
+    }
+  }
+}

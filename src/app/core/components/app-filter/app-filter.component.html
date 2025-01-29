@@ -1,0 +1,25 @@
+<form #filterForm="ngForm" class="filter-section">
+  <div *ngFor="let filter of filtersToDisplay">
+    <label [for]="filter">{{ filter | titlecase }}:</label>
+
+    <ng-container *ngIf="suggestionObj[filter]">
+      <select [id]="filter" [name]="filter" [(ngModel)]="filters[filter]">
+        <option value="" active>All</option>
+
+        <option *ngFor="let option of suggestionObj[filter]" [value]="option">
+          {{ option }}
+        </option>
+      </select>
+    </ng-container>
+
+    <ng-container *ngIf="!suggestionObj[filter]">
+      <input
+        type="text"
+        [id]="filter"
+        [name]="filter"
+        [(ngModel)]="filters[filter]"
+      />
+    </ng-container>
+  </div>
+  <button type="button" (click)="applyFilters()">Apply Filters</button>
+</form>

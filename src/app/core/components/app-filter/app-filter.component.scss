@@ -1,0 +1,46 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as mixin;
+
+.filter-section {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+
+  @include mixin.respond(phone) {
+    padding: 4rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  label {
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    color: $color-secondary;
+  }
+
+  input,
+  select,
+  button {
+    border-radius: 4px;
+    border: 1px solid $color-secondary;
+    padding: 1.2rem;
+    background-color: $color-body-2;
+    color: $color-secondary;
+  }
+  button {
+    cursor: pointer;
+    align-self: flex-end;
+    height: 50%;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: $color-body;
+    }
+    &:active {
+      background-color: $color-grey-5;
+    }
+  }
+}

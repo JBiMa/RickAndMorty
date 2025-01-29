@@ -1,0 +1,62 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as mixin;
+
+mat-paginator {
+  background-color: transparent;
+  color: $color-secondary;
+}
+
+.card-container {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 0.5fr));
+  gap: 1rem;
+  padding: 4rem;
+
+  @include mixin.respond(tab-port) {
+    padding: 1rem;
+  }
+
+  .character-card {
+    background-color: $color-body-3;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    &__img {
+      border-radius: 1rem;
+      margin-left: 1rem;
+      height: 100%;
+    }
+    .character-status {
+      color: $color-white;
+      border-radius: 1rem;
+      padding-inline: 0.8rem;
+      width: fit-content;
+
+      &--alive {
+        background-color: $color-alive;
+      }
+      &--dead {
+        background-color: $color-dead;
+      }
+      &--unknown {
+        background-color: $color-unknown;
+      }
+    }
+
+    &:hover {
+      z-index: 10;
+      transform: translateY(-10px) scale(1.1);
+      box-shadow: 0rem 1rem 2rem 0.2rem $color-secondary-light;
+    }
+  }
+}
+
+.page-change {
+  display: flex;
+  justify-content: space-around;
+
+  @include mixin.respond(tab-port) {
+    flex-direction: column;
+  }
+}

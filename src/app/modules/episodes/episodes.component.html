@@ -1,0 +1,89 @@
+<div class="page-change">
+  <app-filter
+    [filters]="filters"
+    (applyFiltersEvent)="updateUrl()"
+  ></app-filter>
+</div>
+
+<app-loading-screen *ngIf="isLoading"></app-loading-screen>
+
+<div class="info-container" *ngIf="!(episodes$ | async); else episodes">
+  <h1>Oh No! No episodes found!</h1>
+</div>
+
+<ng-template #episodes>
+  <table mat-table [dataSource]="episodes$ | async" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let episode">{{ episode.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="air_date">
+      <mat-header-cell *matHeaderCellDef>Air Date</mat-header-cell>
+      <mat-cell *matCellDef="let episode">{{ episode.air_date }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="episode">
+      <mat-header-cell *matHeaderCellDef>Episode</mat-header-cell>
+      <mat-cell *matCellDef="let episode">{{ episode.episode }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="characters">
+      <mat-header-cell *matHeaderCellDef>Characters</mat-header-cell>
+      <mat-cell *matCellDef="let episode">{{
+        episode.characters.length
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="addToWatchList">
+      <mat-header-cell *matHeaderCellDef>Add to watch list</mat-header-cell>
+      <mat-cell *matCellDef="let episode">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="watchListMenu"
+          *ngIf="currentUser$ | async; else login"
+        >
+          <mat-icon>playlist_add</mat-icon>
+        </button>
+        <ng-template #login>
+          <button mat-icon-button routerLink="/login">
+            <mat-icon>login</mat-icon>
+          </button>
+        </ng-template>
+        <mat-menu #watchListMenu="matMenu">
+          <button
+            mat-menu-item
+            *ngFor="let watchList of watchLists$ | async"
+            (click)="addToWatchList(episode, watchList)"
+          >
+            {{ watchList.name }}
+          </button>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      *matHeaderRowDef="[
+        'name',
+        'air_date',
+        'episode',
+        'characters',
+        'addToWatchList'
+      ]"
+    ></mat-header-row>
+    <mat-row
+      *matRowDef="
+        let row;
+        columns: ['name', 'air_date', 'episode', 'characters', 'addToWatchList']
+      "
+    ></mat-row>
+  </table>
+  <mat-paginator
+    [length]="totalEpisodes"
+    [pageSize]="itemsPerPageValue"
+    [pageIndex]="actualPage - 1"
+    [hidePageSize]="true"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+</ng-template>

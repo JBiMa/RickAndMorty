@@ -1,0 +1,8 @@
+@use "../variables" as *;
+
+mat-paginator {
+  font-size: 1.2em;
+  font-weight: 900;
+  background-color: $color-body-2;
+  color: $color-secondary;
+}

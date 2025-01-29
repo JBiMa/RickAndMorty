@@ -1,0 +1,37 @@
+// colors
+$color-primary: #49c5b6;
+$color-secondary: #a7cb54;
+$color-secondary-light: hsla(78, 53%, 56%, 0.8);
+$color-body: #10291f;
+$color-body-2: #100a1f;
+$color-body-3: #222222d6;
+$color-grey-0: #fcfcfc;
+$color-grey-1: #f7f7f7;
+$color-grey-2: #f1f1f1;
+$color-grey-3: #d4d4d4;
+$color-grey-4: #b8b8b8;
+$color-grey-5: #4b4b4b;
+$color-grey-6: #272727;
+
+$color-alive: #5b7226;
+$color-dead: #5b0000ca;
+$color-unknown: #3a3a3aca;
+
+$color-danger: #b90000;
+
+$color-white: #fff;
+$color-black: #000;
+
+// font
+$font-primary: "Roboto", sans-serif;
+$font-display: "Yellowtail", serif;
+$default-font-size: 1.6rem;
+
+// breakpoints
+$screen-s: 40em;
+$screen-m: 48em;
+$screen-l: 64em;
+$screen-xl: 80em;
+
+//shadows
+$box-shadow-1: 16px 24px 52px -8px rgba($color-black, 0.15);

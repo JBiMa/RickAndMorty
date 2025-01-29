@@ -1,0 +1,88 @@
+<div class="watch-list">
+  <div class="watch-list__header">
+    <h3 class="title">Create a new watch list</h3>
+    <div class="new-watch-list">
+      <input
+        type="text"
+        [(ngModel)]="newWatchListName"
+        placeholder="Watch list name"
+        class="watch-list-input"
+      />
+      <button
+        (click)="createWatchList()"
+        [disabled]="newWatchListName === ''"
+        class="create-button"
+      >
+        Create
+      </button>
+    </div>
+  </div>
+  <h3 class="title">Watch Lists</h3>
+
+  <div class="watch-list__body">
+    <div
+      *ngFor="let watchList of watchLists$ | async"
+      class="watch-list__body-container"
+    >
+      <div class="watch-list__body-container--header">
+        <h4 class="list-name">{{ watchList.name }}</h4>
+        <button
+          mat-fab
+          color="warn"
+          aria-label="Button to remove watch list"
+          (click)="removeWatchList(watchList)"
+          class="remove-button"
+        >
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </div>
+
+      <div
+        *ngIf="watchList.episodesList.length === 0; else watchListContent"
+        class="empty-watchlist-message"
+      >
+        <p>No Episodes in watchList</p>
+      </div>
+      <ng-template #watchListContent>
+        <ul class="episodes-list">
+          <li
+            *ngFor="
+              let watchListElement of watchList.episodesList
+                | watchOrder : 'desc'
+            "
+            [ngClass]="{ 'episode-item--watched': watchListElement.completed }"
+            class="episode-item"
+          >
+            <input
+              mat-checkbox
+              type="checkbox"
+              [(ngModel)]="watchListElement.completed"
+              [checked]="watchListElement.completed"
+              (change)="toggleWatchedEpisode(watchListElement, watchList)"
+              class="episode-checkbox"
+            />
+
+            <span class="episode-name">{{
+              watchListElement.episode.name
+            }}</span>
+            |
+            <span class="watched-status">{{
+              watchListElement.completed ? "Watched" : "Unwatched"
+            }}</span>
+
+            <button
+              mat-fab
+              color="warn"
+              aria-label="Button to remove episode from watch list"
+              (click)="removeEpisode(watchListElement, watchList)"
+              class="remove-button"
+            >
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+            <hr />
+          </li>
+        </ul>
+      </ng-template>
+    </div>
+  </div>
+</div>

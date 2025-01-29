@@ -1,0 +1,63 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as mixin;
+
+.mat-mdc-table {
+  background-color: transparent;
+  backdrop-filter: blur(3px) brightness(0.2);
+
+  mat-header-cell,
+  mat-cell {
+    justify-content: center;
+  }
+
+  .mat-mdc-header-row {
+    font-weight: 900;
+  }
+
+  .mat-mdc-row {
+    transition: all 0.3s;
+
+    &:hover {
+      color: $color-primary;
+      background-color: $color-body-2;
+
+      z-index: 10;
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0rem 0.2rem 0.2rem $color-secondary-light;
+    }
+  }
+}
+.page-change {
+  display: flex;
+  justify-content: space-around;
+
+  @include mixin.respond(tab-port) {
+    flex-direction: column;
+  }
+
+  .filter-section {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+
+    @include mixin.respond(phone-small) {
+      flex-direction: column;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      color: $color-secondary;
+    }
+
+    select {
+      border-radius: 4px;
+      border: 1px solid $color-secondary;
+      padding: 0.5rem;
+      background-color: $color-body-2;
+      color: $color-secondary;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@use "../../../styles/variables" as *;
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+
+  &__image {
+    width: 80vw;
+    max-width: 50rem;
+    filter: drop-shadow(15px 15px 15px $color-secondary);
+
+    animation: moveUpDown 2s infinite alternate ease-in-out;
+    transition: all 0.3s;
+
+    &:hover {
+      filter: drop-shadow(15px 15px 15px $color-primary);
+    }
+  }
+
+  @keyframes moveUpDown {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(20px);
+    }
+  }
+}

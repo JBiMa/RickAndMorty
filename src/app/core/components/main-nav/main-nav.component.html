@@ -1,0 +1,138 @@
+<mat-sidenav-container
+  class="sidenav-container"
+  [ngClass]="{ sidenavCollapse: drawer.opened }"
+>
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    [ngClass]="{ hidden: !(isHandset$ | async) }"
+    fixedInViewport="false"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="false"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a
+        mat-list-item
+        routerLinkActive="active"
+        routerLink="/characters"
+        (click)="closeDrawer()"
+        >Characters</a
+      >
+      <a
+        class="links-container__link"
+        mat-raised-button
+        routerLinkActive="active"
+        routerLink="/characters-list"
+        >Fav Characters</a
+      >
+      <a
+        mat-list-item
+        routerLinkActive="active"
+        routerLink="/episodes"
+        (click)="closeDrawer()"
+        >Episodes</a
+      >
+      <a
+        mat-list-item
+        routerLinkActive="active"
+        routerLink="/locations"
+        (click)="closeDrawer()"
+        >Locations</a
+      >
+      <a
+        mat-list-item
+        routerLinkActive="active"
+        routerLink="/my-watch-list"
+        (click)="closeDrawer()"
+        >My Watch List</a
+      >
+    </mat-nav-list>
+    <div class="user-container">
+      <span>{{ userEmail }}</span>
+      <button>Logout</button>
+      <button>Signup</button>
+      <button>Login</button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <ng-container
+        *ngIf="isHandset$ | async; else desktopMenu"
+        class="mobile-top-bar"
+      >
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <img
+          class="main-nav-logo"
+          src="../../assets/images/Rick_and_Morty.svg"
+          alt="Rick and Morty logo"
+        />
+      </ng-container>
+
+      <ng-template #desktopMenu>
+        <div class="links-container">
+          <a
+            class="links-container__link"
+            mat-raised-button
+            routerLinkActive="active"
+            routerLink="/characters"
+            >Characters</a
+          >
+          <a
+            class="links-container__link"
+            mat-raised-button
+            routerLinkActive="active"
+            routerLink="/characters-list"
+            >Fav Characters</a
+          >
+          <a
+            class="links-container__link"
+            mat-raised-button
+            routerLinkActive="active"
+            routerLink="/locations"
+            >Locations</a
+          >
+          <a class="links-container__link" routerLink="/home">
+            <img
+              class="main-nav-logo"
+              src="../../assets/images/Rick_and_Morty.svg"
+              alt="Rick and Morty logo"
+            />
+          </a>
+          <a
+            class="links-container__link"
+            mat-raised-button
+            routerLinkActive="active"
+            routerLink="/episodes"
+            >Episodes</a
+          >
+          <a
+            class="links-container__link"
+            mat-raised-button
+            routerLinkActive="active"
+            routerLink="/my-watch-list"
+            >My Watch List</a
+          >
+        </div>
+        <div class="user-container">
+          <ng-container *ngIf="userEmail; else loginLink">
+            <a mat-raised-button (click)="onLogout()">Logout</a>
+          </ng-container>
+          <ng-template #loginLink>
+            <a mat-raised-button routerLink="/login">Login</a>
+          </ng-template>
+        </div>
+      </ng-template>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,61 @@
+@use "../../../../styles/variables" as *;
+
+.sidenav-container {
+  background-color: transparent;
+}
+.sidenavCollapse {
+  position: fixed;
+  background-image: url(../../../../assets/images/w36qtztppfc71.webp);
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.sidenav {
+  position: fixed;
+  height: 100%;
+  width: 13rem;
+  z-index: 100;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  background-color: transparent;
+  position: sticky;
+  padding: 3rem 2rem;
+  top: 0;
+  z-index: 1;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.links-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__link {
+    margin: 0 1rem;
+    min-width: min-content;
+  }
+
+  .active {
+    background-color: $color-primary;
+  }
+}
+.user-container {
+  & > a {
+    color: $color-white;
+    text-decoration: none;
+  }
+}
+
+.main-nav-logo {
+  width: 10rem;
+}

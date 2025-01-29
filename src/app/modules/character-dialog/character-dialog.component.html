@@ -1,0 +1,49 @@
+<div class="dialog-popup">
+  <img
+    mat-card-lg-image
+    *ngIf="character.image"
+    [src]="character.image"
+    alt="{{ character.name }}"
+    class="character-card__img"
+  />
+
+  <div class="character-info">
+    <h2 mat-dialog-title class="character-info__title">{{ character.name }}</h2>
+    <hr />
+    <mat-dialog-content>
+      <p class="">
+        <span class="character-info__label">Status: </span
+        >{{ character.status }}
+      </p>
+      <p>
+        <span class="character-info__label">Species: </span
+        >{{ character.species }}
+      </p>
+      <p>
+        <span class="character-info__label">Type: </span>{{ character.type }}
+      </p>
+      <p>
+        <span class="character-info__label">Gender: </span
+        >{{ character.gender }}
+      </p>
+      <p>
+        <span class="character-info__label">First appeared in: </span
+        >{{ firstEpisodeName }}
+      </p>
+      <p>
+        <span class="character-info__label">Last seen in episode: </span
+        >{{ lastEpisodeName }}
+      </p>
+    </mat-dialog-content>
+    <div class="example-button-container">
+      <button
+        mat-icon-button
+        [color]="(isFav$ | async) ? 'warn' : 'white'"
+        aria-label="button with heart icon to add character to favorite"
+        (click)="addCharacterToFav(character)"
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

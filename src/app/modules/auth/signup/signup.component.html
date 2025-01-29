@@ -1,0 +1,56 @@
+<div class="form-auth">
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" formControlName="email" />
+    </div>
+    <div formGroupName="passwords">
+      <div>
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          formControlName="password"
+        />
+      </div>
+      <p
+        *ngIf="!passwordControl.valid && passwordControl.touched"
+        class="error"
+      >
+        Provide proper password
+      </p>
+      <div>
+        <label for="retypePassword">Retype Password:</label>
+        <input
+          type="password"
+          id="retypePassword"
+          name="retypePassword"
+          formControlName="retypePassword"
+        />
+      </div>
+      <p
+        *ngIf="!retypePasswordControl.valid && retypePasswordControl.touched"
+        class="error"
+      >
+        Provide proper password
+      </p>
+    </div>
+    <p
+      *ngIf="
+        !passwordsControl.valid &&
+        passwordControl.touched &&
+        retypePasswordControl.touched
+      "
+      class="error"
+    >
+      Passwords do not match
+    </p>
+
+    <button type="submit" [disabled]="!signupForm.valid">SignUp</button>
+  </form>
+  <div class="button-container">
+    <button class="btn" routerLink="/login">Login</button>
+  </div>
+  <p>{{ signupError }}</p>
+</div>
